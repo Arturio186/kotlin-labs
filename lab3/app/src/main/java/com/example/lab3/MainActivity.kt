@@ -36,6 +36,10 @@ class MainActivity : AppCompatActivity() {
                 output.text = ""
             }
 
+            if (output.text.toString() == "Ошибка!") {
+                output.text = ""
+            }
+
             val digit = (view as Button).text.toString()
 
             if (output.text.toString() == "0" || output.text.toString() == "") {
@@ -55,6 +59,10 @@ class MainActivity : AppCompatActivity() {
         zeroButton.setOnClickListener {
             if (leftValue != "" && !canEqualOperation) {
                 canEqualOperation = true
+                output.text = ""
+            }
+
+            if (output.text.toString() == "Ошибка!") {
                 output.text = ""
             }
 
@@ -107,12 +115,25 @@ class MainActivity : AppCompatActivity() {
         )
 
         val operationClickListener = View.OnClickListener { view ->
+            if (output.text.toString() == "Ошибка!") {
+                return@OnClickListener
+            }
+
             if (canEqualOperation) {
                 val doubleRightValue = output.text.toString().replace(',', '.').toDouble()
                 val doubleLeftValue = leftValue.replace(',', '.').toDouble()
 
-                val doubleOutput = when (operation) {
-                    "/" -> doubleLeftValue / doubleRightValue
+                var doubleOutput = when (operation) {
+                    "/" -> {
+                        if (doubleRightValue == 0.0) {
+                            output.text = "Ошибка!"
+                            canEqualOperation = false
+                            leftValue = ""
+                            operation = ""
+                            return@OnClickListener
+                        }
+                        doubleLeftValue / doubleRightValue
+                    }
                     "*" -> doubleLeftValue * doubleRightValue
                     "-" -> doubleLeftValue - doubleRightValue
                     "+" -> doubleLeftValue + doubleRightValue
@@ -161,7 +182,16 @@ class MainActivity : AppCompatActivity() {
                 val doubleLeftValue = leftValue.replace(',', '.').toDouble()
 
                 val doubleOutput = when (operation) {
-                    "/" -> doubleLeftValue / doubleRightValue
+                    "/" -> {
+                        if (doubleRightValue == 0.0) {
+                            output.text = "Ошибка!"
+                            canEqualOperation = false
+                            leftValue = ""
+                            operation = ""
+                            return@setOnClickListener
+                        }
+                        doubleLeftValue / doubleRightValue
+                    }
                     "*" -> doubleLeftValue * doubleRightValue
                     "-" -> doubleLeftValue - doubleRightValue
                     "+" -> doubleLeftValue + doubleRightValue

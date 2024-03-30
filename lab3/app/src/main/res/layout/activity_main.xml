@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     android:paddingBottom="32dp"
     tools:context=".MainActivity">
 
@@ -20,7 +20,8 @@
         android:gravity="end|bottom"
         android:textSize="65sp"
         android:text="0"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:singleLine="true" />
 
     <LinearLayout
         android:id="@+id/buttonLayout"
@@ -252,6 +253,4 @@
                 android:layout_marginLeft="12dp" />
         </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>
