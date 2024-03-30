@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="gray">#A5A5A5</color>
+    <color name="grayPressed">#7F7F7F</color>
+
+    <color name="darkGray">#333333</color>
+    <color name="darkGrayPressed">#1E1E1E</color>
+
+    <color name="orange">#F2A33B</color>
+    <color name="orangePressed">#D9822B</color>
+</resources>
